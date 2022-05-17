@@ -1,0 +1,86 @@
+public class S1{
+    public String sname{get;set;}
+    public String rollno{get;set;}
+    public String div{get;set;}
+    public String func{get;set;}
+    public String result{get;set;}
+    public Double phy{get;set;}
+    public Double chem{get;set;}
+    public Double maths{get;set;}
+    public Double marks{get;set;}
+    
+    public S1(){
+        
+    }
+    public void find(){
+        if(func=='name'){
+            result=sname;
+        }
+        else if(func=='roll'){
+            result=rollno;
+        }
+        else if(func=='div'){
+            result=div;
+        }
+        Double t=phy+chem+maths;
+        marks=t/3;
+    }
+    
+    
+}
+
+
+
+
+
+<apex:page controller="S1">
+    <apex:form>
+        <apex:pageBlock>
+            <apex:pageBlockSection>
+                <apex:pageBlockSectionItem>
+                    <apex:outputLabel value="Name"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem>
+                    <apex:inputText value="{!sname}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem>
+                    <apex:outputLabel value="Roll No."/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem>
+                    <apex:inputText value="{!rollno}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem>
+                    <apex:outputLabel value="Division"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem>
+                    <apex:inputText value="{!div}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem>
+                    <apex:outputLabel value="Physics Marks"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem>
+                    <apex:inputText value="{!phy}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem>
+                    <apex:outputLabel value="Chemistry Marks"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem>
+                    <apex:inputText value="{!chem}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem>
+                    <apex:outputLabel value="Maths Marks"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem>
+                    <apex:inputText value="{!maths}"/>
+                </apex:pageBlockSectionItem>
+                 <apex:pageBlockSectionItem>
+                     <apex:inputText value="{!marks}" id="res"/><apex:actionStatus id="sts" startText="finding.."></apex:actionStatus>
+            </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+           <apex:pageBlockButtons>
+               <apex:commandButton value="find" action="{!find}" reRender="res" status="sts"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+                     
+</apex:page>
