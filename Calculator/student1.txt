@@ -1,0 +1,85 @@
+public class InfoSys {
+	public String sname {get; set;} 
+	public String rollno {get; set;}
+    public String sclass {get; set;}
+	public String result {get; set;}
+    public String func {get; set;}
+    
+    public void find()
+    {
+        if(func == 'sname')
+        {
+        	result = sname;
+        }
+        else if(func == 'rollno')
+        {
+            result = rollno;
+        }
+        else
+        {
+            result = sclass;
+        }
+    }
+}
+
+
+<apex:page controller="InfoSys">
+    <apex:form >
+        <apex:pageBlock >   
+            <apex:pageBlockSection >
+                
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Student's Name"/>
+                    </apex:pageBlockSectionItem>
+                
+                    <apex:pageBlockSectionItem >
+                        <apex:inputText value="{!sname}"/>
+                    </apex:pageBlockSectionItem>
+                	
+                	<apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Student's Roll no."/>
+                    </apex:pageBlockSectionItem>
+                
+                    <apex:pageBlockSectionItem >
+                        <apex:inputText value="{!rollno}"/>
+                    </apex:pageBlockSectionItem>
+                
+                	<apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Student's Class"/>
+                    </apex:pageBlockSectionItem>
+                
+                    <apex:pageBlockSectionItem >
+                        <apex:inputText value="{!sclass}"/>
+                    </apex:pageBlockSectionItem>
+                
+                    <apex:pageBlockSectionItem >
+                        <apex:selectRadio value="{!func}" layout="pageDirection">
+                            <apex:selectOption itemValue="sname" itemLabel="Name"></apex:selectOption>
+                            <apex:selectOption itemValue="rollno" itemLabel="Roll No."></apex:selectOption>
+                            <apex:selectOption itemValue="sclass" itemLabel="Class"></apex:selectOption>
+                        </apex:selectRadio>
+                    </apex:pageBlockSectionItem>
+                
+                    <apex:pageBlockSectionItem >
+                    </apex:pageBlockSectionItem>
+                
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText value="Information"></apex:outputText>
+                    </apex:pageBlockSectionItem>
+                
+                    <apex:pageBlockSectionItem >
+                        <apex:inputText value="{!result}" id="res"/><apex:actionStatus id="sts" startText="Finding..."></apex:actionStatus>
+                    </apex:pageBlockSectionItem>
+                
+                    <apex:pageBlockSectionItem >
+                    </apex:pageBlockSectionItem>
+                
+            </apex:pageBlockSection>
+            
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Find" action="{!find}" reRender="res" status="sts"/>
+            </apex:pageBlockButtons>
+  
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

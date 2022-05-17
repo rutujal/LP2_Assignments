@@ -1,0 +1,59 @@
+<apex:page controller="addRowRemoveRow">
+  <apex:form >
+      <apex:pageBlock id="anyName">
+          <apex:pageblocktable value="{!allAccs}" var="Accvariable">
+              <apex:column headerValue="Name">
+                  <apex:inputtext value="{!Accvariable.Name}"/>
+              </apex:column>
+              <apex:column headerValue="phone">
+                  <apex:inputtext value="{!Accvariable.Phone}"/>
+              </apex:column>
+              
+          </apex:pageblocktable>
+          
+          <apex:commandButton value="addRow" action="{!addRowMethod}" rerender="anyName"/>
+          <apex:commandButton value="removeRow" action="{!removeRowMethod}"/>
+          
+          <apex:commandButton value="save" action="{!saveMethod}"/>
+          <apex:commandButton value="Clear" action="{!clearMethod}" reRender="anyName"/>
+      </apex:pageBlock>
+  </apex:form>
+</apex:page>
+
+
+
+public class addRowRemoveRow{
+
+    public List<Account> allAccs{get;set;}
+
+    public addRowRemoveRow(){
+        allAccs = new List<Account>();
+        Account acc1 = new Account();
+        allAccs.add(acc1);
+    }
+    public void addRowMethod(){
+        Account acc1 = new Account();
+        allAccs.add(acc1);
+    }
+        
+    public void removeRowMethod(){
+        integer count = allAccs.size();
+        allAccs.remove(count-1);
+    }
+    public void saveMethod(){
+        insert allAccs;
+    }
+    
+    public void clearMethod(){
+        integer finalCount = allAccs.size();
+        allAccs.clear();
+        for(integer i=0;i<finalCount;i++){
+            Account acc1 = new Account();
+            allAccs.add(acc1);
+            
+        }
+    
+    }
+    
+    
+}
